@@ -1,0 +1,25 @@
+{
+  "name": "danwebsite",
+  "private": true,
+  "version": "1.0.0",
+  "description": "A walkable first-person 3D house gallery for Dan Peacock's art, built with three.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "art": "node scripts/build-art-manifest.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pippy360/danwebsite.git"
+  },
+  "homepage": "https://github.com/pippy360/danwebsite#readme",
+  "license": "ISC",
+  "dependencies": {
+    "three": "^0.177.0"
+  },
+  "devDependencies": {
+    "vite": "^7.0.6"
+  }
+}

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Dan Peacock — The Gallery House</title>
+    <meta name="description" content="Step inside a little house filled with Dan Peacock's art. Walk around in first person and see every piece framed on the walls." />
+    <meta name="theme-color" content="#1a1917" />
+    <meta property="og:title" content="Dan Peacock — The Gallery House" />
+    <meta property="og:description" content="Walk through a 3D house hung with Dan Peacock's art." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <canvas id="scene" aria-label="3D gallery house"></canvas>
+    <div id="vignette" aria-hidden="true"></div>
+
+    <div id="hud" class="hidden" aria-hidden="true">
+      <div id="room-label"><span class="artist"></span><span class="room"></span></div>
+      <div id="crosshair"></div>
+      <div id="hover-label"><span class="title"></span><span class="hint"></span></div>
+      <div id="help-bar">
+        <span class="desktop-only"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> walk · <kbd>Shift</kbd> run · mouse to look · click a painting · <kbd>G</kbd> grid · <kbd>Esc</kbd> pause</span>
+        <span class="touch-only">Left thumb to walk · drag to look · tap a painting</span>
+      </div>
+      <button id="touch-menu" class="touch-only" type="button" aria-label="Menu">☰</button>
+    </div>
+
+    <div id="joystick" aria-hidden="true"><div class="knob"></div></div>
+
+    <section id="start-screen" class="overlay">
+      <div class="card">
+        <p class="eyebrow">Welcome to the house of</p>
+        <h1 class="artist-name">Dan Peacock</h1>
+        <p class="tagline"></p>
+        <div id="loader">
+          <div class="bar"><span></span></div>
+          <p class="status">Building the house…</p>
+        </div>
+        <button id="enter-btn" class="primary" type="button" disabled>Enter the house</button>
+        <button id="grid-btn" class="link" type="button">or browse the collection as a grid</button>
+        <ul class="controls desktop-only">
+          <li><span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></span> walk around</li>
+          <li><span><kbd>Mouse</kbd></span> look</li>
+          <li><span><kbd>Shift</kbd></span> run</li>
+          <li><span><kbd>Click</kbd></span> view a painting</li>
+        </ul>
+        <ul class="controls touch-only">
+          <li><span>Left thumb</span> walk</li>
+          <li><span>Drag</span> look around</li>
+          <li><span>Tap</span> view a painting</li>
+        </ul>
+        <a class="ig-link hidden" target="_blank" rel="noopener"></a>
+        <p class="placeholder-note hidden">Showing placeholder paintings — add images to <code>public/art/</code> and run <code>npm run art</code>.</p>
+      </div>
+    </section>
+
+    <section id="pause-screen" class="overlay hidden">
+      <div class="card compact">
+        <p class="eyebrow">Paused</p>
+        <h2 class="artist-name">Dan Peacock</h2>
+        <button id="resume-btn" class="primary" type="button">Continue walking</button>
+        <button id="pause-grid-btn" class="link" type="button">Browse the collection as a grid</button>
+      </div>
+    </section>
+
+    <section id="lightbox" class="overlay hidden" role="dialog" aria-modal="true" aria-label="Artwork">
+      <button class="lb-close" type="button" aria-label="Close">×</button>
+      <button class="lb-nav lb-prev" type="button" aria-label="Previous artwork">‹</button>
+      <figure>
+        <div class="lb-image"><img alt="" /></div>
+        <figcaption>
+          <p class="lb-count"></p>
+          <h2 class="lb-title"></h2>
+          <p class="lb-meta"></p>
+          <p class="lb-caption"></p>
+          <a class="lb-ig hidden" target="_blank" rel="noopener"></a>
+          <button class="lb-walk link" type="button">Walk to this painting</button>
+        </figcaption>
+      </figure>
+      <button class="lb-nav lb-next" type="button" aria-label="Next artwork">›</button>
+    </section>
+
+    <section id="grid-view" class="overlay hidden" role="dialog" aria-modal="true" aria-label="Collection">
+      <header>
+        <div>
+          <p class="eyebrow">The collection</p>
+          <h2 class="artist-name">Dan Peacock</h2>
+        </div>
+        <button class="grid-close primary" type="button">Back to the house</button>
+      </header>
+      <div class="grid"></div>
+    </section>
+
+    <div id="toast" aria-live="polite"></div>
+    <noscript><p class="noscript">This gallery needs JavaScript and WebGL.</p></noscript>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
